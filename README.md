@@ -15,6 +15,7 @@ These types of resources are supported:
 
 ```hcl
 module "rabbitmq" {
+  count          = true
   source         = "terraform-alicloud-modules/rabbitmq/alicloud"
   instance_name  = "tf-rabbitmq"
   instance_type  = "professional"
