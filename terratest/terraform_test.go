@@ -39,8 +39,8 @@ func TestTerraformBasicExampleNew(t *testing.T) {
 	terraform.InitAndApply(t, terraformOptions)
 
 	// Run `terraform output` to get the values of output variables
-	thisAmqpInstanceName := terraform.Output(t, terraformOptions, "this_amqp_instance_name")
+	thisFcNasName := terraform.Output(t, terraformOptions, "this_fc_nas_name")
 
 	// Verify we're getting back the outputs we expect
-	assert.Equal(t, thisAmqpInstanceName, name)
+	assert.Equal(t, thisFcNasName, name)
 }

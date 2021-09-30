@@ -1,28 +1,34 @@
-Terraform module which creates a RabbitMQ on Alibaba Cloud
+This module is used to create Function Compute Service to access NAS resources under Alibaba Cloud
 
-terraform-alicloud-rabbitmq
+terraform-alicloud-fcs-nas
 =====================================================================
 
 [English](README.md) | 简体中文
 
-本 Module 用于在阿里云创建一个 RabbitMQ。
+本 Module 用于在阿里云创建 FC 并挂在 NAS。
 
 本 Module 支持创建以下资源:
 
-* [alicloud_rabbitmq](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/amqp_instance)
+* [alicloud_fc_service](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/fc_service)
+* [alicloud_ram_role_policy_attachment](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_role_policy_attachment)
+* [alicloud_ram_role](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_role)
+* [alicloud_ram_policy](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_policy)
+* [alicloud_vswitch](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/vswitch)
+* [alicloud_vpc](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/vpc)
+* [alicloud_security_group](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/security_group)
+* [alicloud_nas_file_system](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/nas_file_system)
+* [alicloud_ram_role_policy_attachment](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_role_policy_attachment)
 
 ## 用法
 
 ```hcl
-module "rabbitmq" {
-  count          = true
-  source         = "terraform-alicloud-modules/rabbitmq/alicloud"
-  instance_name  = "tf-rabbitmq"
-  instance_type  = "professional"
-  max_tps        = 1000
-  queue_capacity = 50
-  support_eip    = true
-  payment_type   = "Subscription"
+module "ecs-snapshot-oss" {
+  source          = "terraform-alicloud-modules/fcs-nas/alicloud"
+  instance_name   = "tf-fcs-nas"
+  server_addr     = "terraform-nas.aliyuncs.com:/workspace/document"
+  mount_dir       = "/home/www"
+  group_id        = -1
+  user_id         = -1
 }
 ```
 

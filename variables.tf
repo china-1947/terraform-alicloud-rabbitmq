@@ -4,86 +4,74 @@ variable "name" {
   default     = "terraform_name"
 }
 
-variable "instance_type" {
-  description = "The specification of the instance type."
+variable "description" {
+  description = "The Function Compute Service description."
   type        = string
-  default     = "professional"
+  default     = "tf unit test"
 }
 
-variable "max_tps" {
-  description = "The specification of the peak TPS traffic."
-  type        = number
-  default     = 1000
-}
-
-variable "queue_capacity" {
-  description = "The specification of the queue capacity."
-  type        = number
-  default     = 50
-}
-
-variable "support_eip" {
-  description = "The specification of support EIP."
+variable "internet_access" {
+  description = "The specification of internet access."
   type        = bool
   default     = true
 }
 
-variable "max_eip_tps" {
-  description = "The specification of the max eip tps."
-  type        = number
-  default     = 128
-}
-
-variable "payment_type" {
-  description = "The specification of the payment type."
-  type        = string
-  default     = "Subscription"
-}
-
-variable "period" {
-  description = "The specification of the period."
-  type        = number
-  default     = 1
-}
-
-variable "create" {
-  description = "Whether to create instance. If false, you can specify an existing instance by setting 'instance_id'."
-  type        = bool
-  default     = true
-}
-
-variable "instance_id" {
-  description = "The instance_id used to RabbitMQ. If set, the 'create' will be ignored."
+variable "role" {
+  description = "RAM role arn attached to the Function Compute Service."
   type        = string
   default     = ""
 }
 
-variable "auto_delete_state" {
-  description = "The specification of the auto delete state."
-  type        = bool
-  default     = false
-}
-
-variable "exchange_type" {
-  description = "The specification of the exchange type."
+variable "security_group_id" {
+  description = "A security group ID associated with the Function Compute Service."
   type        = string
-  default     = "HEADERS"
+  default     = ""
 }
 
-variable "internal" {
-  description = "The specification of the internal."
-  type        = bool
-  default     = false
+variable "vswitch_ids" {
+  description = "A list of vswitch IDs associated with the Function Compute Service."
+  type        = list(string)
+  default     = []
 }
 
-variable "argument" {
-  description = "The specification of the argument."
+variable "group_id" {
+  description = "The group id of your NAS file system."
+  type        = number
+  default     = -1
+}
+
+variable "user_id" {
+  description = "The user id of your NAS file system."
+  type        = number
+  default     = -1
+}
+
+variable "mount_dir" {
+  description = "The local address where to mount your remote NAS directory."
   type        = string
-  default     = "x-match:all"
+  default     = "/home/www"
 }
 
-variable "binding_type" {
-  description = "The specification of the binding type."
+variable "server_addr" {
+  description = "The address of the remote NAS directory."
   type        = string
-  default     = "QUEUE"
+  default     = ""
+}
+
+variable "role_name" {
+  description = "Name of the RAM Role."
+  type        = string
+  default     = ""
+}
+
+variable "policy_name" {
+  description = "Name of the RAM policy."
+  type        = string
+  default     = ""
+}
+
+variable "policy_type" {
+  description = "Type of the RAM policy."
+  type        = string
+  default     = ""
 }
